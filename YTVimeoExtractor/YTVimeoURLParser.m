@@ -17,7 +17,11 @@
         //Get the last part of the '/' which will be the videoID
         
        vimeoVideoID = [[vimeoURL componentsSeparatedByString:@"/"] lastObject];
-        
+       
+       if (![self isThisStringOnlyNumbers:vimeoVideoID]) {
+            vimeoVideoID = [[vimeoURL componentsSeparatedByString:@"/"] objectAtIndex:3];
+       }
+
     } @catch (NSException *exception) {
         
         NSLog(@"Caught exception %@", exception);
@@ -52,6 +56,16 @@
 
 }
 
+-(bool)isThisStringOnlyNumbers: (NSString *)string{
+    NSCharacterSet *_NumericOnly = [NSCharacterSet decimalDigitCharacterSet];
+    NSCharacterSet *myStringSet = [NSCharacterSet characterSetWithCharactersInString:string];
+    
+    if ([_NumericOnly isSupersetOfSet: myStringSet]) {
+        return YES;
+    }
+    return NO;
+}
+
 -(NSString *)extractVideoIdentifier:(NSString *)vimeoURL{
     
     __block NSString *vimeoVideoID;
@@ -59,7 +73,11 @@
     @try{
         //Get the last part of the '/' which will be the videoID
         
-        vimeoVideoID = [[vimeoURL componentsSeparatedByString:@"/"] lastObject];
+        vimeoVideoID = [[vimeoURL componentsSeparatedByString:@"/"] lastObject]
+        
+        if (![self isThisStringOnlyNumbers:vimeoVideoID]) {
+            vimeoVideoID = [[vimeoURL componentsSeparatedByString:@"/"] objectAtIndex:3];
+        }
         
     } @catch (NSException *exception) {
         
