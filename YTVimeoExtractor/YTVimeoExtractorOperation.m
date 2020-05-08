@@ -61,8 +61,8 @@ NSString *const YTVimeoPlayerConfigURL = @"https://player.vimeo.com/video/%@/con
 }
 
 - (instancetype)initWithURL:(NSString *)videoURL referer:(NSString *)videoReferer{
-    
-    return [self initWithVideoIdentifier:videoURL.lastPathComponent referer:videoReferer];
+    YTVimeoURLParser *parser = [[YTVimeoURLParser alloc] init];
+    return [self initWithVideoIdentifier:[parser extractVideoIdentifier:videoURL] referer:videoReferer];
 }
 
 
