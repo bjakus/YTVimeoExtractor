@@ -73,7 +73,7 @@
     @try{
         //Get the last part of the '/' which will be the videoID
         
-        vimeoVideoID = [[vimeoURL componentsSeparatedByString:@"/"] lastObject]
+        vimeoVideoID = [[vimeoURL componentsSeparatedByString:@"/"] lastObject];
         
         if (![self isThisStringOnlyNumbers:vimeoVideoID]) {
             vimeoVideoID = [[vimeoURL componentsSeparatedByString:@"/"] objectAtIndex:3];
